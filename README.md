@@ -30,3 +30,5 @@ Game2ViewModel - Swift資料儲存的檔案/
 Game2TicTocToeApp - App整合檔
 
 整合遊戲檔名：
+
+MainContentView - 遊戲主介面
