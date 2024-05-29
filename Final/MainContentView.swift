@@ -27,7 +27,7 @@ struct MainContentView: View {
                             .padding(.horizontal, 40)
                     }
 
-                    NavigationLink(destination: GameBView()) {
+                    NavigationLink(destination: game2ContentView()) {
                         Text("ＯＯＸＸ進階版")
                             .font(.title)
                             .padding()
