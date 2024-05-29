@@ -1,3 +1,10 @@
+//
+//  game1ContentView.swift
+//  Final
+//
+//  Created by haohaoxiao on 2024/5/30.
+//
+
 import SwiftUI
 
 // 生成包含不重複數字的隨機序列
