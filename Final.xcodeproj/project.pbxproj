@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		80E593D62C079F0B00FF1C12 /* Game2ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E593D52C079F0B00FF1C12 /* Game2ContentView.swift */; };
 		80E593D82C079F4000FF1C12 /* Game2ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E593D72C079F4000FF1C12 /* Game2ViewModel.swift */; };
-		E47779892C0753B100462C80 /* GameBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47779882C0753B100462C80 /* GameBView.swift */; };
 		E477798B2C078EF300462C80 /* game1ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E477798A2C078EF300462C80 /* game1ContentView.swift */; };
 		E47DF1BF2C05F2F800F39381 /* FinalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47DF1BE2C05F2F800F39381 /* FinalApp.swift */; };
 		E47DF1C12C05F2F800F39381 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47DF1C02C05F2F800F39381 /* MainContentView.swift */; };
@@ -20,7 +19,6 @@
 /* Begin PBXFileReference section */
 		80E593D52C079F0B00FF1C12 /* Game2ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game2ContentView.swift; sourceTree = "<group>"; };
 		80E593D72C079F4000FF1C12 /* Game2ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game2ViewModel.swift; sourceTree = "<group>"; };
-		E47779882C0753B100462C80 /* GameBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBView.swift; sourceTree = "<group>"; };
 		E477798A2C078EF300462C80 /* game1ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = game1ContentView.swift; sourceTree = "<group>"; };
 		E47DF1BB2C05F2F800F39381 /* Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E47DF1BE2C05F2F800F39381 /* FinalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalApp.swift; sourceTree = "<group>"; };
@@ -43,8 +41,6 @@
 		E47DF1B22C05F2F800F39381 = {
 			isa = PBXGroup;
 			children = (
-				80E593D52C079F0B00FF1C12 /* Game2ContentView.swift */,
-				80E593D72C079F4000FF1C12 /* Game2ViewModel.swift */,
 				E47DF1BD2C05F2F800F39381 /* Final */,
 				E47DF1BC2C05F2F800F39381 /* Products */,
 			);
@@ -65,8 +61,9 @@
 				E47DF1C02C05F2F800F39381 /* MainContentView.swift */,
 				E47DF1C22C05F2F900F39381 /* Assets.xcassets */,
 				E47DF1C42C05F2F900F39381 /* Preview Content */,
-				E47779882C0753B100462C80 /* GameBView.swift */,
 				E477798A2C078EF300462C80 /* game1ContentView.swift */,
+				80E593D72C079F4000FF1C12 /* Game2ViewModel.swift */,
+				80E593D52C079F0B00FF1C12 /* Game2ContentView.swift */,
 			);
 			path = Final;
 			sourceTree = "<group>";
@@ -151,7 +148,6 @@
 			files = (
 				E477798B2C078EF300462C80 /* game1ContentView.swift in Sources */,
 				80E593D82C079F4000FF1C12 /* Game2ViewModel.swift in Sources */,
-				E47779892C0753B100462C80 /* GameBView.swift in Sources */,
 				80E593D62C079F0B00FF1C12 /* Game2ContentView.swift in Sources */,
 				E47DF1C12C05F2F800F39381 /* MainContentView.swift in Sources */,
 				E47DF1BF2C05F2F800F39381 /* FinalApp.swift in Sources */,

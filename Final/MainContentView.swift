@@ -54,7 +54,7 @@ struct MainContentView: View {
 
                     // 隱藏的導航連結，用於隨機跳轉
                     NavigationLink(destination: game1ContentView(), tag: Destination.gameA, selection: $navigateToGame) { EmptyView() }
-                    NavigationLink(destination: GameBView(), tag: Destination.gameB, selection: $navigateToGame) { EmptyView() }
+                    NavigationLink(destination: game2ContentView(), tag: Destination.gameB, selection: $navigateToGame) { EmptyView() }
                 }
 
                 Spacer()
