@@ -1,66 +1,76 @@
-//
-//  MainContentView.swift
-//  Final
-//
-//  Created by haohaoxiao on 2024/5/28.
-//
-
 import SwiftUI
 
-struct ContentView: View {
+struct MainContentView: View {
+    @State private var navigateToGame: Destination? = nil
+
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
-                NavigationLink(destination: game1ContentView()) {
-                    Text("1A2B")
-                        .font(.title)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
+            VStack {
+                // 添加頂部圖片
+                Image("background")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 400)  // 你可以根據需要調整高度
+                    .clipped()
                 
-                NavigationLink(destination: GameBView()) {
-                    Text("ＯＯＸＸ進階版")
-                        .font(.title)
-                        .padding()
-                        .background(Color.green)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
+                Spacer()
                 
-                Button(action: {
-                    let randomGame = Int.random(in: 0...1)
-                    if randomGame == 0 {
-                        navigateToGame = .gameA
-                    } else {
-                        navigateToGame = .gameB
+                VStack(spacing: 20) {
+                    NavigationLink(destination: game1ContentView()) {
+                        Text("1A2B")
+                            .font(.title)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color(hue: 0.995, saturation: 0.62, brightness: 0.895))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            .padding(.horizontal, 40)
                     }
-                }) {
-                    Text("🎲")
-                        .font(.title)
-                        .padding()
-                        .background(Color.orange)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+
+                    NavigationLink(destination: GameBView()) {
+                        Text("ＯＯＸＸ進階版")
+                            .font(.title)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color(hue: 0.595, saturation: 0.551, brightness: 0.755))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            .padding(.horizontal, 40)
+                    }
+
+                    Button(action: {
+                        let randomGame = Int.random(in: 0...1)
+                        navigateToGame = randomGame == 0 ? .gameA : .gameB
+                    }) {
+                        Text("🎲")
+                            .font(.title)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color(hue: 0.088, saturation: 0.739, brightness: 0.948))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            .padding(.horizontal, 40)
+                    }
+
+                    // 隱藏的導航連結，用於隨機跳轉
+                    NavigationLink(destination: game1ContentView(), tag: Destination.gameA, selection: $navigateToGame) { EmptyView() }
+                    NavigationLink(destination: GameBView(), tag: Destination.gameB, selection: $navigateToGame) { EmptyView() }
                 }
-                
-                NavigationLink(destination: game1ContentView(), tag: Destination.gameA, selection: $navigateToGame) { EmptyView() }
-                NavigationLink(destination: GameBView(), tag: Destination.gameB, selection: $navigateToGame) { EmptyView() }
+
+                Spacer()
             }
-            .navigationTitle("遊戲選擇")
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
         }
     }
-    
-    @State private var navigateToGame: Destination? = nil
-    
-    enum Destination: Int {
+
+    enum Destination: Int, Hashable {
         case gameA, gameB
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainContentView()
     }
 }
