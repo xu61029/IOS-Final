@@ -1,7 +1,27 @@
 # IOS-Final
 
-彩獨遊戲檔名：
-game1...
+1A2B遊戲檔名：
+game1ContentView - 主程式
+使用變數名稱
+game1guess 
+game1result 
+game1answer 
+game1guessCount 
+game1startTime 
+game1elapsedTime 
+game1guesshistory 
+game1remindmes 
+game1isGuessButtonPressed 
+game1isRestartButtonPressed 
+game1Contentcolor 
+game1textcolor 
+game1buttoncolor 
+使用方法名
+game1checkGuess() 
+game1restartGame() 
+game1generateRandomNumber() 
+    
+
 
 
 圈圈叉叉遊戲檔名：
