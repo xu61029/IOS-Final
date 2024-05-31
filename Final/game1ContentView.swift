@@ -35,112 +35,131 @@ struct game1ContentView: View {
     
     
     var body: some View {
-        VStack {
-            Text("歡迎來到 1A2B 遊戲！")
-                .font(.title)
-                .multilineTextAlignment(.center)
-                .padding()
-                .foregroundColor(game1Contentcolor.game1textcolor)
+        ZStack{
+            Color.white
+                .onTapGesture {
+                    hideKeyboard()
+                    }
             
-            TextField("輸入四位數字", text: $game1guess)
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.numberPad)
-            
-            //根據不同情況顯示不同畫面
-            if game1result != "4A0B" && game1guessCount < 10 {//遊戲中
-                Button("猜", action:{
-                    game1checkGuess()
-                    withAnimation(.easeInOut(duration: 0.15)) {
-                        game1isGuessButtonPressed = true
+            VStack {
+                Image("IMG_2851")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 100)  // 你可以根據需要調整高度
+                    .clipped()
+                
+                TextField("輸入四位數字", text: $game1guess)
+                    .padding()
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.numberPad)
+                
+                //根據不同情況顯示不同畫面
+                if game1result != "4A0B" && game1guessCount < 10 {//遊戲中
+                    Button("猜", action:{
+                        game1checkGuess()
+                        withAnimation(.easeInOut(duration: 0.15)) {
+                            game1isGuessButtonPressed = true
                         }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                             withAnimation(.easeInOut(duration: 0.15)) {
                                 game1isGuessButtonPressed = false
                             }
                         }
-                    game1guess = ""
-                    print(game1answer)
-                })
+                        game1guess = ""
+                        print(game1answer)
+                    })
                     .frame(width: 90)
                     .padding(8)
                     .background(game1Contentcolor.game1buttoncolor)
                     .foregroundColor(.white)
-                    .cornerRadius(30)
+                    .cornerRadius(game1Contentcolor.game1buttonradius)
                     .scaleEffect(game1isGuessButtonPressed ? 0.95 : 1.0)
-
-                //當前遊戲所有猜測結果
-                ForEach(game1guesshistory as? [String] ?? [], id: \.self) { history in
-                    Text(history)
-                }
-                .padding(10)
-                .multilineTextAlignment(.center)
-                .border(Color(red: 0.918, green: 0.618, blue: 0.555))
-                .foregroundColor(game1Contentcolor.game1textcolor)
-                
-            }else if game1result == "4A0B" {//贏得遊戲
-                
-                Spacer()
-                
-                VStack{
-                    Text("恭喜你猜對了！答案是 \(game1answer)。")
-                        .font(.headline)
-                        .padding()
-                        .foregroundColor(game1Contentcolor.game1textcolor)
                     
-                    if let startTime = game1startTime {
-                        let elapsedTime = Date().timeIntervalSince(startTime)
-                        Text(String(format: "你猜對用了 %.2f 秒", elapsedTime))
+                    //當前遊戲所有猜測結果
+                    VStack {
+                        ForEach(game1guesshistory as? [String] ?? [], id: \.self) { history in
+                            Text(history)
+                        }
+                    }
+                    .padding(10)
+                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    .frame(width: 330.0, height: 400.0,alignment: .top)
+                    .multilineTextAlignment(.center)
+                    .background(
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(Color.white) // 這裡設置背景顏色，如果需要的話
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color(hue: 0.088, saturation: 0.739, brightness: 0.948), lineWidth: 6)
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .foregroundColor(game1Contentcolor.game1textcolor)
+                    
+                    
+                }else if game1result == "4A0B" {//贏得遊戲
+                    
+                    Spacer()
+                    
+                    VStack{
+                        Text("恭喜你猜對了！答案是 \(game1answer)。")
+                            .font(.headline)
+                            .padding()
+                            .foregroundColor(game1Contentcolor.game1textcolor)
+                        
+                        if let startTime = game1startTime {
+                            let elapsedTime = Date().timeIntervalSince(startTime)
+                            Text(String(format: "你猜對用了 %.2f 秒", elapsedTime))
+                                .padding()
+                                .foregroundColor(game1Contentcolor.game1textcolor)
+                        }
+                        
+                        Text("總共猜了 \(game1guessCount) 次。")
                             .padding()
                             .foregroundColor(game1Contentcolor.game1textcolor)
                     }
+                    .padding()
+                    .border(Color.white)
+                    .background(.white.opacity(0.5))
+                    .cornerRadius(15)
                     
-                    Text("總共猜了 \(game1guessCount) 次。")
+                    
+                }else if game1guessCount == 10 && game1result != "4A0B" {//機會用盡遊戲失敗
+                    Text("機會用盡請再接再厲。")
+                        .font(.headline)
                         .padding()
                         .foregroundColor(game1Contentcolor.game1textcolor)
                 }
-                .padding()
-                .border(Color.white)
-                .background(.white.opacity(0.5))
-                .cornerRadius(15)
                 
+                Spacer()
                 
-            }else if game1guessCount == 10 && game1result != "4A0B" {//機會用盡遊戲失敗
-                Text("機會用盡請再接再厲。")
-                    .font(.headline)
+                //輸入內容不符預期（防呆）
+                Text(game1remindmes)
                     .padding()
                     .foregroundColor(game1Contentcolor.game1textcolor)
-            }
-            
-            Spacer()
-            
-            //輸入內容不符預期（防呆）
-            Text(game1remindmes)
-                .padding()
-                .foregroundColor(game1Contentcolor.game1textcolor)
-            
-            Button("重新開始", action: {
-                game1restartGame();
-                withAnimation(.easeInOut(duration: 0.15)) {
-                    game1isRestartButtonPressed = true
+                
+                Button("重新開始", action: {
+                    game1restartGame();
+                    withAnimation(.easeInOut(duration: 0.15)) {
+                        game1isRestartButtonPressed = true
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                         withAnimation(.easeInOut(duration: 0.15)) {
                             game1isRestartButtonPressed = false
                         }
                     }
-            })
+                })
                 .frame(width: 90)
                 .padding(8)
                 .background(game1Contentcolor.game1buttoncolor)
                 .foregroundColor(.white)
-                .cornerRadius(30)
+                .cornerRadius(game1Contentcolor.game1buttonradius)
                 .scaleEffect(game1isRestartButtonPressed ? 0.95 : 1.0)
-        }
-        .padding()
-        .background(Color(red: 0.933, green: 0.958, blue: 0.831))
-        .onAppear {
-            game1startTime = Date()
+            }
+            .padding()
+            .onAppear {
+                game1startTime = Date()
+            }
         }
     }
     
@@ -192,11 +211,16 @@ struct game1ContentView: View {
         
         return "\(game1countA)A\(game1countB)B"
     }
+    
+    private func hideKeyboard() {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
 }
 
-struct game1Contentcolor {//設定顏色
+struct game1Contentcolor {//設定樣式
     static let game1textcolor = Color(red: 0.107, green: 0.158, blue: 0.149)
-    static let game1buttoncolor = Color(red: 0.848, green: 0.572, blue: 0.513)
+    static let game1buttoncolor = Color(hue: 0.995, saturation: 0.62, brightness: 0.895)
+    static let game1buttonradius:CGFloat = 15
 }
 
 struct game1ContentView_Previews: PreviewProvider {
