@@ -6,11 +6,11 @@ struct MainContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                // 添加頂部圖片
+                // 添加圖片
                 Image("background")
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 400)  // 你可以根據需要調整高度
+                    .frame(height: 400)
                     .clipped()
                 
                 Spacer()
@@ -37,9 +37,11 @@ struct MainContentView: View {
                             .cornerRadius(10)
                             .padding(.horizontal, 40)
                     }
-
+                    //隨機選擇遊戲
                     Button(action: {
+                        
                         let randomGame = Int.random(in: 0...1)
+                        //為0:1A2B 為1:OOXX進階版
                         navigateToGame = randomGame == 0 ? .gameA : .gameB
                     }) {
                         Text("🎲")
